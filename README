@@ -1,0 +1,353 @@
+############################################################
+
+INTRODUCTION
+
+This operating system is installed into the virtual machine
+image supplied with the Alpine Term application for Android.
+
+Origin URL: https://github.com/xeffyr/alpine-term
+OS image revision: 2021.01.28
+
+As Alpine Linux is a general purpose operating system, you
+can do here whatever you want. Be aware that x86_64 hardware
+of this virtual machine is emulated. Its performance is
+significantly lower than on your device. There you have
+root permissions and absolute access to all components of
+the operating system and hardware, but only within the
+bounds of the virtual machine. You cannot have direct access
+to the host.
+
+############################################################
+
+CONSOLE
+
+Access to the operating system is primarily performed
+through /dev/tty{0..3} serial lines. Since they are
+basically data streams and not real terminals, a terminal
+window handshaking is not possible. As a result an automatic
+window resizing is not being performed and you may observe
+inconsistent behaviour of programs after changing font size.
+
+Use command 'resize' to set the correct values for terminal
+columns and rows. If text is messed up, use command 'reset'.
+
+The default shell is 'mksh'.
+
+############################################################
+
+HARD DRIVE AND FILE SYSTEM PROPERTIES
+
+Hard drive image has a size of 128 GiB, which can be much
+more than total memory of your host device. To avoid
+problems, the root partition is limited to only 4 GiB, which
+should be enough to get started.
+
+If you need more, use utilities 'fdisk' and 'resize2fs' to
+extend the root partition to desired length. Be careful to
+not mess up the boundaries of the file system, otherwise
+virtual machine may fail to boot.
+
+############################################################
+
+SHARING FILES WITH HOST
+
+The Alpine Term application maintains a directory on Android
+storage for sharing files between host and virtual machine.
+By default, this directory is mounted on '/mnt/shared'.
+
+On the host side this directory is usually available at
+
+ /storage/self/primary
+
+In order to access '/mnt/shared' as non-root user, you will
+need to create a group with the correct id and assign it to
+your user.
+
+If shared storage on your device is actually external
+SD-CARD and it is not mounted, exchanging files will not
+be possible through '/mnt/shared'. You will need to use
+alternate method, for example SFTP.
+
+Shared storage has limits. It does not support Unix file
+permissions, hard and symbolic links, sockets and device
+files.
+
+############################################################
+
+NETWORKING
+
+The network is pre-configured and should work out-of-box.
+To have access to the Internet, your host device should be
+connected to Wi-Fi or mobile network.
+
+Here are networking properties of the virtual machine:
+
+* IP:       dynamic (typically 10.0.2.15)
+* Gateway:  10.0.2.2
+* DNS:      10.0.2.3
+
+By default, the operating system does not use name server
+offered by QEMU DHCP. Instead, it uses the following OpenNIC
+servers:
+
+1. 94.16.114.254
+2. 185.120.22.15
+
+In case of problems with domain resolution, try to replace
+the content of /etc/resolv.conf with these values:
+
+ nameserver 8.8.8.8
+ nameserver 8.8.4.4
+
+If you have some network services running on the host,
+you can access them through the gateway IP (10.0.2.2).
+
+OpenSSH and Nginx are pre-installed and configured to be
+started at boot. To access them outside of the virtual
+machine, you need to create a port forwarding through the
+QEMU monitor console by using these commands:
+
+ hostfwd_add tcp::10022-:22
+ hostfwd_add tcp::10080-:80
+
+If you want limit them to be accessible only within the
+host, use these commands instead:
+
+ hostfwd_add tcp:127.0.0.1:10022-:22
+ hostfwd_add tcp:127.0.0.1:10080-:80
+
+Nginx is configured to serve content from the '~/web'. By
+default it serves same content for any host name.
+
+VPN software such as OpenVPN and Wireguard is available and
+is ready for use. You will just need the configuration files
+and optionally to setup service to be started at boot.
+
+TOR is also available and configured to run SOCKS and
+HTTP CONNECT proxies.
+
+############################################################
+
+PACKAGE REPOSITORIES
+
+Apk package manager keeps repository configuration in the
+file '/etc/apk/repositories'.
+
+There are 3 official repositories configured by default:
+
+* http://dl-cdn.alpinelinux.org/alpine/edge/main
+* http://dl-cdn.alpinelinux.org/alpine/edge/community
+* @testing http://dl-cdn.alpinelinux.org/alpine/edge/testing
+
+Note that if you want to install a package from the testing
+repository, use tags. For example:
+
+ apk add pkg@testing
+
+You can remove the tag from '/etc/apk/repositories' to be
+able install package in normal way but this is not
+recommended.
+
+############################################################
+
+AVAILABLE PACKAGES
+
+Core: bash, bc, coreutils, diffutils, dos2unix, ed, file,
+findutils, gawk, grep, htop, kmod, less, lsof, mandoc, mksh,
+nano, net-tools, patch, procps, psmisc, sed, sudo, tmux,
+util-linux, which.
+
+Archivers/compressors: bzip2, cpio, gzip, lrzip, lz4, lzip,
+p7zip, tar, unzip, zstd.
+
+Containers: docker.
+
+Crypto: cryptsetup, gnupg, openssl, steghide.
+
+Development: build-base, autoconf, automake, gdb, git,
+go, indent, intltool, m4, nodejs, npm, patchutils, perl,
+python3, py3-pip, py3-virtualenv, radare2, shellcheck,
+strace, texinfo.
+
+File system: dosfstools, e2fsprogs, sshfs, zerofree.
+
+Media: exiftool, graphicsmagick, pngquant.
+
+Networking: aria2, autossh, bind-tools, bmon, curl, go-ipfs,
+iproute2, iptables, irssi, lynx, mosh, nginx, nmap, openssh,
+openvpn, proxychains-ng, rclone, rsync, socat, stunnel, tor,
+torsocks, wget, whois, wireguard-tools, yggdrasil.
+
+Misc: cpulimit, hyperfine, jq, mktorrent, pdfgrep, pwgen,
+qemu-img, ripgrep, rlwrap, sqlite, task, translate-shell.
+
+Full list of packages can be viewed with 'apk info | sort'.
+
+############################################################
+
+TIPS
+
+1. Using root privileges:
+
+   The root account is disabled, so you need to use 'sudo'
+   for privilege escalation.
+
+   Installing packages:
+
+     sudo apk add <package>
+
+   Starting the root shell:
+
+     sudo -i
+
+   Rebooting:
+
+     sudo reboot
+
+   To view the all allowed sudo commands, use 'sudo -l'. If
+   command is not in the allowed list, use the root shell to
+   run it.
+
+   Some commands such as 'reboot' will run without requiring
+   the password. Others like 'sudo apk ...' will require the
+   password of current user account and will 'remember' it
+   for the next 60 seconds.
+
+   See '/etc/sudoers' and '/etc/sudoers.d/wheel' for the
+   details about configuration.
+
+2. Creating a new user:
+
+   Account 'alpine' should be sufficient, but if you really
+   need a new one, create it with these commands (as root):
+
+     useradd -U -m user-name
+     passwd user-name
+
+3. Setting up time zone:
+
+   sudo setup-timezone
+
+4. Installing Xorg:
+
+   Drivers and Xorg server can be installed by executing
+   this command:
+
+     sudo setup-xorg-base
+
+   However, the installation of a desktop environment is
+   left on your own. If you need desktop environment,
+   consider to try something lightweight, e.g 'fluxbox'.
+
+   Note that Alpine Term does not have a native way for
+   video output. You will need to start a QEMU VNC server
+   through the monitor console.
+
+5. Using VNC:
+
+   The QEMU VNC server can be started with this monitor
+   command:
+
+     change vnc 127.0.0.1:0
+
+   The server will be accessible at 127.0.0.1:5900. You
+   will need a VNC client to access it. If you do not
+   have such application installed, you may try the noVNC
+   web-based client. Its patched sources are available
+   at '~/web/novnc'.
+
+   If you decided to use noVNC, the start the VNC server
+   at WebSocket port:
+
+     change vnc 127.0.0.1:0,websocket
+
+   QEMU calculates the listening port by:
+
+     VNC:        5900 + display_no
+     WebSocket:  5700 + display_no
+
+   As Nginx is configured to serve this directory, noVNC
+   should be accessible by this URL in your Android OS
+   web browser:
+
+     http://127.0.0.1:10080/novnc/
+
+   It is assumed that Nginx port is forwarded.
+
+6. Viewing changes to the file system:
+
+   Changes to package files such as configuration in /etc
+   directory can be viewed by
+
+     apk audit
+
+   If you need to verify the integrity of the installed
+   packages, then use next command:
+
+     apk audit --system
+
+   Normally it should not print anything. However, changes
+   detected in certain packages are ok. Check the changed
+   files and try to find why. If changes are unwanted,
+   reinstall the affected packages.
+
+7. Making root file system read-only:
+
+   For certain manipulations with file system, for example
+   for zeroing unallocated blocks with 'zerofree' or just
+   checking it for errors when mounted, you will need to
+   have the file system to be in read-only state.
+
+   You can put it in read-only mode by using sysrq:
+
+     sudo -s
+     echo u > /proc/sysrq-trigger
+
+   You will need to reboot after any manipulations with
+   the file system.
+
+8. Using additional drive images:
+
+   Alpine Term allows you to add an additional CD-ROM and
+   HDD image.
+
+   To do so, place your images to the '/mnt/shared'. On
+   the host they can be placed at
+
+     /storage/self/primary/Android/data/alpine.term/files
+
+   or equivalent directory. File names must be exactly
+
+     * cdrom.iso - for CD-ROM image.
+     * hdd.qcow2 - for HDD image.
+
+   So you can have only one additional image of each type
+   and formats are limited to ISO and QCOW2 respectively.
+
+   You can create a new HDD image with utility 'qemu-img':
+
+     qemu-img create -f qcow2 /mnt/shared/hdd.qcow2 500M
+
+   After adding a custom drive image, the Alpine Term
+   application should be restarted. Just rebooting is not
+   enough as QEMU should be launched with different options.
+
+9. Enabling additional CPU cores:
+
+   Emulated CPU provides 4 cores but only one is enabled by
+   default. You can enable all of them by removing kernel
+   command line argument 'maxcpus=1' from this file:
+
+     /boot/extlinux.conf
+
+   Note that file has immutable attribute set, so you need
+   to run 'chattr -i /boot/extlinux.conf' before attempting
+   to edit it.
+
+   Additional CPU cores DO NOT make Alpine Term faster!
+   QEMU still uses a one host thread and shares it between
+   all emulated cores in a round-robin manner. This has
+   certain impact on overall performance. Enable additional
+   CPU cores only if that is a requirement of your program.
+
+############################################################
