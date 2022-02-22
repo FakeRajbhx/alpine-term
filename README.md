@@ -9,3 +9,7 @@ https://jarvisstaraq.blogspot.com/2021/05/how-to-install-and-setup-xeffyrandroid
 
 YouTube video
 https://youtu.be/1bmvwzZETLw
+
+
+
+https://t.me/termux24x7
