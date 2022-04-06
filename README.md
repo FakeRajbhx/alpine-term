@@ -9,10 +9,10 @@ https://youtu.be/hvb7o9jhFQw
 # android-vshell
 https://jarvisstaraq.blogspot.com/2021/05/how-to-install-and-setup-xeffyrandroid.html
 
-#Alpine-term 
+# Alpine-term about
 https://youtu.be/hvb7o9jhFQw
 
-#YouTube video Docker in Android 
+# Docker installation video in Android 
 https://youtu.be/1bmvwzZETLw
 
 https://t.me/termux24x7
