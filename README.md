@@ -1,7 +1,7 @@
 #Originally creator by ```@xeffyr```
 
 # ALPINE-TERM 
-* Download listen link
+* Download link
 http://jarvisstaraq.blogspot.com/2022/04/how-to-install-and-setup-alpine-term-in.html
 
 #### How to setup alpine term
