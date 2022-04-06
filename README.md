@@ -1,9 +1,11 @@
 #Originally creator by ```@xeffyr```
 
-# ALPINE-TERM
+# ALPINE-TERM 
+* Download Link
 https://github.com/xeffyr/alpine-term/releases
 
 #### How to setup alpine term
+* YouTube link
 https://youtu.be/hvb7o9jhFQw
 
 # ANDROID-VSHELL APP
