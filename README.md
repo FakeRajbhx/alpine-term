@@ -3,17 +3,17 @@
 # ALPINE-TERM
 https://github.com/xeffyr/alpine-term/releases
 
-### Alpine-term about
-https://youtu.be/hvb7o9jhFQw
-
 #### How to setup alpine term
 https://youtu.be/hvb7o9jhFQw
 
 # ANDROID-VSHELL APP
-[android-vshell app](https://jarvisstaraq.blogspot.com/2021/05/how-to-install-and-setup-xeffyrandroid.html)
 
-## Docker installation video in Android 
-https://youtu.be/1bmvwzZETLw
+### Blog link
+[android-vshell app blog](https://jarvisstaraq.blogspot.com/2021/05/how-to-install-and-setup-xeffyrandroid.html)
+#### YouTube video link
+[How to setup](https://youtu.be/V_fU-RPi5J8)
+[Java installation](https://youtu.be/AO6jRrGT4UE)
+[Docker installation](https://youtu.be/1bmvwzZETLw)
 
 # official Telegram group
 https://t.me/termux24x7
