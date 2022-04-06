@@ -1,8 +1,8 @@
 #Originally creator by ```@xeffyr```
 
 # ALPINE-TERM 
-* Download Link
-https://github.com/xeffyr/alpine-term/releases
+* Download listen link
+http://jarvisstaraq.blogspot.com/2022/04/how-to-install-and-setup-alpine-term-in.html
 
 #### How to setup alpine term
 * YouTube link
