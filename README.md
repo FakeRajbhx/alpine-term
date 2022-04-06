@@ -1,4 +1,4 @@
-#Original creator by @xeffyr
+#Original creator by ```@xeffyr```
 
 # alpine-term
 https://github.com/xeffyr/alpine-term/releases
