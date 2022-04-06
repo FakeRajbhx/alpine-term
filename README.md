@@ -27,8 +27,6 @@ x86_64 machine emulated with [QEMU](https://www.qemu.org/). Interaction
 with the operating system is done through terminals which are attached to
 the serial consoles of the virtual machine.
 
-https://pin.it/1bJutzc
-
 ## System requirements
 
  - AArch64-based device.
