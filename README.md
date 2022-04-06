@@ -6,8 +6,7 @@ https://github.com/xeffyr/alpine-term/releases
 # How to setup alpine term
 https://youtu.be/hvb7o9jhFQw
 
-# android-vshell
-https://jarvisstaraq.blogspot.com/2021/05/how-to-install-and-setup-xeffyrandroid.html
+# [android-vshell app] (https://jarvisstaraq.blogspot.com/2021/05/how-to-install-and-setup-xeffyrandroid.html)
 
 # Alpine-term about
 https://youtu.be/hvb7o9jhFQw
@@ -18,7 +17,7 @@ https://youtu.be/1bmvwzZETLw
 # official Telegram group
 https://t.me/termux24x7
 
-# Alpine Term
+# [Alpine Term]
 
 Alpine Term is a terminal and Linux environment application for Android.
 A key difference of other terminal applications is that it uses
