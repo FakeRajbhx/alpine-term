@@ -1,6 +1,6 @@
 #Originally creator by ```@xeffyr```
 
-# ALPINE-TERM 
+# ALPINE-TERM APP 606mb
 * Download link
 http://jarvisstaraq.blogspot.com/2022/04/how-to-install-and-setup-alpine-term-in.html
 
@@ -8,7 +8,7 @@ http://jarvisstaraq.blogspot.com/2022/04/how-to-install-and-setup-alpine-term-in
 * YouTube link
 https://youtu.be/hvb7o9jhFQw
 
-# ANDROID-VSHELL APP
+# ANDROID-VSHELL APP 72mb
 
 ### Blog link
 [android-vshell app blog](https://jarvisstaraq.blogspot.com/2021/05/how-to-install-and-setup-xeffyrandroid.html)
