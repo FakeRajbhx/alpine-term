@@ -17,9 +17,6 @@ https://youtu.be/hvb7o9jhFQw
 * [Java installation in vShell](https://youtu.be/AO6jRrGT4UE)
 * [Docker installation in vShell](https://youtu.be/1bmvwzZETLw)
 
-# official Telegram group
-https://t.me/termux24x7
-
 # Alpine Term
 
 Alpine Term is a terminal and Linux environment application for Android.
