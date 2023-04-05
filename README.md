@@ -1,3 +1,6 @@
+**Alpine Term is deprecated.**
+Now is: https://github.com/sylirre/vmConsole
+
 #Originally creator by ```@xeffyr```
 
 # ALPINE-TERM APP 606mb
