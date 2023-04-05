@@ -18,7 +18,7 @@ https://youtu.be/hvb7o9jhFQw
 * [Docker installation in vShell](https://youtu.be/1bmvwzZETLw)
 
 # official Telegram group
-https://t.me/termux24x7
+~https://t.me/termux24x7~
 
 # Alpine Term
 
